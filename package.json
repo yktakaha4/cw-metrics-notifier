@@ -4,6 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "prepackage": "rm -rf .build; [[ -d vendor/node-canvas-lambda ]] || (cd vendor && git clone https://github.com/jwerre/node-canvas-lambda.git)",
+    "package": "dotenv -- sls package",
+    "predeploy": "rm -rf .build; [[ -d vendor/node-canvas-lambda ]] || (cd vendor && git clone https://github.com/jwerre/node-canvas-lambda.git)",
+    "deploy": "dotenv -- sls deploy -v",
+    "local": "dotenv -- sls invoke local",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +22,32 @@
   "bugs": {
     "url": "https://github.com/yktakaha4/cw-metrics-notifier/issues"
   },
-  "homepage": "https://github.com/yktakaha4/cw-metrics-notifier#readme"
+  "homepage": "https://github.com/yktakaha4/cw-metrics-notifier#readme",
+  "dependencies": {
+    "@slack/web-api": "^5.8.0",
+    "aws-sdk": "^2.638.0",
+    "canvas": "^2.6.1",
+    "fs-extra": "^8.1.0",
+    "merge-images": "^1.2.0",
+    "moment-timezone": "^0.5.28",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.46",
+    "@types/fs-extra": "^8.1.0",
+    "@types/merge-images": "^1.1.0",
+    "@types/moment-timezone": "^0.5.12",
+    "@types/uuid": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "dotenv-cli": "^3.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "serverless": "^1.66.0",
+    "serverless-plugin-optimize": "^4.1.4-rc.1",
+    "serverless-plugin-typescript": "^1.1.9",
+    "typescript": "^3.8.3"
+  }
 }
