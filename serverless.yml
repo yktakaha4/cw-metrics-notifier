@@ -22,8 +22,11 @@ functions:
   widgets:
     handler: src/widgets.scheduledHandler
     environment:
+      # widgets/ 配下のファイル名（カンマ区切り可）
       WIDGETS_NAMES: sample
+      # マージ画像でx方向にいくつまでメトリクスを並べるか
       METRICS_X_COUNT: 2
+      # 何日前までを表示対象にするか
       METRICS_DAYS_AGO: 7
     events:
       - schedule:
