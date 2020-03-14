@@ -71,6 +71,8 @@ const createMetricsImage = async (widgetsName: string): Promise<string> => {
               start: `-PT${metricsDaysAgo * 24}H`,
               end: 'PT0H',
               timezone,
+              width: imageWidth,
+              height: imageHeight,
             }),
           })
           .promise();
