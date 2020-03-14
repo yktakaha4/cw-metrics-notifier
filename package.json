@@ -1,0 +1,19 @@
+{
+  "name": "cw-metrics-notifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yktakaha4/cw-metrics-notifier.git"
+  },
+  "author": "Yuuki Takahashi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yktakaha4/cw-metrics-notifier/issues"
+  },
+  "homepage": "https://github.com/yktakaha4/cw-metrics-notifier#readme"
+}

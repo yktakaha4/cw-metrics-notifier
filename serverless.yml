@@ -1,0 +1,57 @@
+service:
+  name: cw-metrics-notifier
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-northeast-1
+  stage: prod
+  deploymentBucket: xxxxxxx
+  memorySize: 256
+  timeout: 60
+  environment:
+    SLACK_TOKEN: ${env:SLACK_TOKEN}
+    SLACK_METRICS_CHANNEL_ID: ${env:SLACK_METRICS_CHANNEL_ID}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cloudwatch:GetMetricWidgetImage
+      Resource: "*"
+
+functions:
+  widgets:
+    handler: src/widgets.scheduledHandler
+    environment:
+      WIDGETS_NAMES: sample
+      METRICS_X_COUNT: 2
+      METRICS_DAYS_AGO: 7
+    events:
+      - schedule:
+          rate: cron(0 0 * * ? *)
+          enabled: true
+    layers:
+      - { Ref: NodeCanvasLambdaLayer }
+      - { Ref: CanvasLib64LambdaLayer }
+
+layers:
+  nodeCanvas:
+    package:
+      artifact: vendor/node-canvas-lambda/node12_canvas_layer.zip
+  canvasLib64:
+    package:
+      artifact: vendor/node-canvas-lambda/canvas-lib64-layer.zip
+
+package:
+  include:
+    - widgets/
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-plugin-optimize
+
+custom:
+  optimize:
+    exclude:
+      - canvas
+    includePaths:
+      - widgets/
