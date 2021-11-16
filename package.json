@@ -25,7 +25,7 @@
   "homepage": "https://github.com/yktakaha4/cw-metrics-notifier#readme",
   "dependencies": {
     "@slack/web-api": "^5.8.0",
-    "aws-sdk": "^2.638.0",
+    "aws-sdk": "^2.814.0",
     "canvas": "^2.6.1",
     "fs-extra": "^8.1.0",
     "merge-images": "^1.2.0",
